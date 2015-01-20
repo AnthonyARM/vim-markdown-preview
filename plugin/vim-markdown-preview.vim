@@ -17,7 +17,9 @@ function! Vim_Markdown_Preview()
     let curr_wid = system('xdotool getwindowfocus')
     call system('xdotool windowmap ' . chrome_wid)
     call system('xdotool windowactivate ' . chrome_wid)
-    call system("xdotool key 'ctrl+r'")
+    sleep 300m
+    call system("xdotool key 'ctrl+shift+r'")
+    sleep 300m
     call system('xdotool windowactivate ' . curr_wid)
   endif
   sleep 700m
