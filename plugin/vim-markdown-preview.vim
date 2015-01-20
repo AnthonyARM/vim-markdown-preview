@@ -4,12 +4,15 @@
 "============================================================
 
 function! Vim_Markdown_Preview()
-  let curr_file = expand('%:t')
-  call system('markdown ' . curr_file . ' > /tmp/vim-markdown-preview.html')
-  let chrome_wid = system("xdotool search --name 'vim-markdown-preview.html - Google Chrome'")
+  exe "write"
+  let curr_file = expand('%:p')
+  let out_file = expand('%:p:h') . "/markdown-preview.html"
+  call system('grip --export ' . curr_file . ' '.out_file )
+  "call system('pandoc ' . curr_file . ' -o markdown-preview.html -V links-as-notes --highlight-style pygments -s')
+  let chrome_wid = system("xdotool search --name '". curr_file . " - Grip - Google Chrome'")
   if !chrome_wid
     sleep 300m
-    call system('see /tmp/vim-markdown-preview.html & > /dev/null &')
+    call system('see -g '.out_file)
   else
     let curr_wid = system('xdotool getwindowfocus')
     call system('xdotool windowmap ' . chrome_wid)
