@@ -22,8 +22,7 @@ function! Vim_Markdown_Preview()
     sleep 300m
     call system('xdotool windowactivate ' . curr_wid)
   endif
-  sleep 700m
-  call system('rm /tmp/vim-markdown-preview.html')
+  "call system('rm /tmp/vim-markdown-preview.html')
 endfunction
 
 autocmd Filetype markdown,md map <buffer> <C-p> :call Vim_Markdown_Preview()<CR>
